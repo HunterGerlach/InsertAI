@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "InsertAI",
+    "version": "0.42.0",
+    "permissions": [
+      "activeTab",
+      "storage"
+    ],
+    "action": {
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+    },
+    "icons": {
+      "128": "logo.png"
+    }
+  }
+  
