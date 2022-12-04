@@ -13,9 +13,6 @@ function handleMessage(message) {
     }
   }
   
-  // Check if the chrome and chrome.runtime objects are defined
-  if (typeof chrome !== 'undefined' && typeof chrome.runtime !== 'undefined') {
-    // Add an event listener for the message event
-    chrome.runtime.onMessage.addListener(handleMessage);
-  }
+  // Add a message listener that listens for messages from the popup and calls the handleMessage() function
+  chrome.runtime.onMessage.addListener(handleMessage);
   

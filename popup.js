@@ -40,56 +40,43 @@ var input = document.getElementById('string-input');
 // Get the save button
 var saveButton = document.getElementById('save-button');
 
-// Add an event listener for the save button
-saveButton.addEventListener('click', function() {
+// Define a function to save a string to storage
+function saveString() {
+  // Get the list of saved strings from storage
+  chrome.storage.sync.get(['savedStrings'], function(result) {
+    // Check if the list of saved strings exists
+    if (result.savedStrings) {
+      // Add the new string to the list of saved strings
+      result.savedStrings.push(input.value);
 
-    // Get the list of saved strings from storage
-    chrome.storage.sync.get(['savedStrings'], function(result) {
-      // Check if the list of saved strings exists
-      if (result.savedStrings) {
-        // Add the new string to the list of saved strings
-        result.savedStrings.push(input.value);
-  
-        // Save the updated list of saved strings to storage
-        chrome.storage.sync.set({savedStrings: result.savedStrings});
-      } else {
-        // Create a new list of saved strings with the new string
-        var savedStrings = [input.value];
-  
-        // Save the new list of saved strings to storage
-        chrome.storage.sync.set({savedStrings: savedStrings});
-      }
-    });
+      // Save the updated list of saved strings to storage
+      chrome.storage.sync.set({savedStrings: result.savedStrings});
+    } else {
+      // Create a new list of saved strings with the new string
+      var savedStrings = [input.value];
+
+      // Save the new list of saved strings to storage
+      chrome.storage.sync.set({savedStrings: savedStrings});
+    }
   });
+}
+
+// Add an event listener for the click event on the save button
+saveButton.addEventListener('click', saveString);
 
 // Define a function to handle the keydown event on the input element
 function handleKeydown(event) {
     // Check if the "Enter" key was pressed
     if (event.keyCode === 13) {
-      // Get the list of saved strings from storage
-      chrome.storage.sync.get(['savedStrings'], function(result) {
-        // Check if the list of saved strings exists
-        if (result.savedStrings) {
-          // Add the new string to the list of saved strings
-          result.savedStrings.push(input.value);
-
-          // Save the updated list of saved strings to storage
-          chrome.storage.sync.set({savedStrings: result.savedStrings});
-        } else {
-          // Create a new list of saved strings with the new string
-          var savedStrings = [input.value];
-
-          // Save the new list of saved strings to storage
-          chrome.storage.sync.set({savedStrings: savedStrings});
-        }
-      });
+      // Call the saveString() function
+      saveString();
     }
-}
-
-// Add an event listener for the keydown event on the input element
-input.addEventListener('keydown', handleKeydown);
-
-// Define a function to handle the message event
+  }
+  
+  // Add an event listener for the keydown event on the input element
+  input.addEventListener('keydown', handleKeydown);
+  
+  // Define a function to handle the message event
 function handleMessage(message) {
     // Check if the message contains a selected string
     if (message.selectedString) {
@@ -103,10 +90,10 @@ function handleMessage(message) {
       }
     }
   }
-
-// Check if the chrome, chrome.runtime, and console objects are defined
-if (typeof chrome !== 'undefined' && typeof chrome.runtime !== 'undefined' && typeof console !== 'undefined') {
-    // Add an event listener for the message event that listens for messages from the popup and calls the handleMessage() function
+  
+  // Check if the chrome and chrome.runtime objects are defined
+  if (typeof chrome !== 'undefined' && typeof chrome.runtime !== 'undefined') {
+    // Add a message listener that listens for messages from the content script and calls the handleMessage() function
     chrome.runtime.onMessage.addListener(handleMessage);
-}
-
+  }
+  
