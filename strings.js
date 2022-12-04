@@ -27,11 +27,17 @@ function createStringElement(string) {
     // Set the text of the element to the saved string
     stringElement.textContent = string;
   
+    // Add the "string-row" class to the string element
+    stringElement.classList.add("string-row");
+  
     // Create a new element for the trashcan icon
     var iconElement = document.createElement('img');
   
     // Set the src of the icon element to the trashcan.png file
     iconElement.src = 'trashcan.png';
+  
+    // Add the "trashcan-icon" class to the icon element
+    iconElement.classList.add("trashcan-icon");
   
     // Add the icon element to the string element
     stringElement.appendChild(iconElement);
@@ -54,17 +60,4 @@ function createStringElement(string) {
   
     return stringElement;
   }
-  
-  
-  
-  // Define a function to send the selected string to the active tab
-  function sendSelectedString(selectedString) {
-    // Check if the chrome and chrome.tabs objects are defined
-    if (typeof chrome !== 'undefined' && typeof chrome.tabs !== 'undefined') {
-      // Use the chrome.tabs.query function to find the active tab
-      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        // Send a message to the content script of the active tab with the selected string
-        chrome.tabs.sendMessage(tabs[0].id, {selectedString: selectedString});
-      });
-    }
-  }
+

@@ -1,39 +1,88 @@
 body {
     font-family: sans-serif;
     padding: 10px;
+
+    /* Add styles to change the width of the window */
+    width: 400px;
+
+    /* Add styles to change the background color and text color of the popup */
+    background-color: #b0e0e6;
+    color: #333;
   }
+
+  #logo {
+    display: block;
+    margin: 0 auto;
+}
+
   
   h1 {
     margin-bottom: 10px;
   }
   
   #saved-strings-container {
-    height: 200px;
-    overflow: scroll;
-  }
+    height: 300px;
+    overflow: auto;
+
+    /* Add styles to change the background color and text color of the saved strings section */
+    background-color: #fff;
+    color: #333;
+}
   
-  #saved-strings-container div {
-    background-color: #eee;
-    padding: 5px 10px;
+  #string-input {
+    display: block;
+    width: 100%;
     margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  #save-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
     cursor: pointer;
-    position: relative;
   }
   
-  #saved-strings-container div:hover {
-    background-color: #ddd;
-  }
-  
-  #saved-strings-container div img {
+  .string-row {
+    display: flex;
+    align-items: center;
+
+    /* Add styles to keep the row heights consistent */
+    height: 24px;
+    line-height: 24px;
+}
+
+.trashcan-icon {
+    margin-left: auto;
     display: none;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 16px;
-    height: 16px;
+
+    /* Add styles to change the size of the trashcan icon */
+    width: 24px;
+    height: 24px;
+}
+
+  
+  /* Add styles for the string-row:hover class */
+  .string-row:hover {
+    background-color: #eee;
   }
   
-  #saved-strings-container div:hover img {
+  /* Add styles for the string-row:hover .trashcan-icon class */
+  .string-row:hover .trashcan-icon {
     display: block;
   }
-  
+
+  /* Add styles for the trashcan-icon class */
+.trashcan-icon {
+    margin-left: auto;
+    display: none;
+
+    /* Add styles to change the size of the trashcan icon */
+    width: 24px;
+    height: 24px;
+}
+
