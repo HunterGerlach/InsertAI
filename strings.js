@@ -34,7 +34,7 @@ function createStringElement(string) {
     var iconElement = document.createElement('img');
   
     // Set the src of the icon element to the trashcan.png file
-    iconElement.src = 'trashcan.png';
+    iconElement.src = 'img/trashcan.png';
   
     // Add the "trashcan-icon" class to the icon element
     iconElement.classList.add("trashcan-icon");
