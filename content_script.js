@@ -12,7 +12,23 @@ function handleMessage(message) {
       }
     }
   }
+
+  // Add a listener for the message event
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    // Check if the action is "insertString"
+    if (message.action === 'insertString') {
+      // Get the currently selected element
+      var selectedElement = document.activeElement;
   
-  // Add a message listener that listens for messages from the popup and calls the handleMessage() function
-  chrome.runtime.onMessage.addListener(handleMessage);
+      // Check if the selected element is a form element
+      if (selectedElement && (selectedElement.tagName === 'INPUT' || selectedElement.tagName === 'TEXTAREA')) {
+        // If the selected element is a form element, insert the string into the element
+        selectedElement.value += message.string;
+      } else {
+        // If no form element is selected, show an error message
+        alert('Please select a text field or text area to insert the string into.');
+      }
+    }
+  });
+  
   

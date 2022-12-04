@@ -19,8 +19,8 @@ function updateSavedStrings() {
     });
   }
   
-  // Define a function to create a new element for a saved string
-  function createStringElement(string) {
+// Define a function to create a new element for a saved string
+function createStringElement(string) {
     // Create a new element for the saved string
     var stringElement = document.createElement('div');
   
@@ -29,12 +29,24 @@ function updateSavedStrings() {
   
     // Add an event listener for the click event on the string element
     stringElement.addEventListener('click', function() {
-      // Send a message to the content script of the active tab with the selected string
-      sendSelectedString(this.textContent);
+      // Get the ID of the current tab
+      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        var currentTabId = tabs[0].id;
+  
+        // Try to send a message to the content script of the current tab
+        chrome.tabs.sendMessage(currentTabId, { action: 'insertString', string: string }).then(function() {
+          // If the message is received, close the popup
+          window.close();
+        }).catch(function(error) {
+          // If the content script is not active, show an error message
+          alert('Could not insert string. The content script is not active on this page.');
+        });
+      });
     });
   
     return stringElement;
   }
+  
   
   // Define a function to send the selected string to the active tab
   function sendSelectedString(selectedString) {

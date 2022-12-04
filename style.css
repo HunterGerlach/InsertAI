@@ -1,0 +1,10 @@
+#saved-strings-container h1 {
+    font-family: sans-serif;
+    font-size: 16px;
+    color: red;
+  }
+  
+  #saved-strings-container div:hover {
+    background-color: #f0f0f0;
+  }
+  
