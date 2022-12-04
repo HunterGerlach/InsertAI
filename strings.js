@@ -27,6 +27,15 @@ function createStringElement(string) {
     // Set the text of the element to the saved string
     stringElement.textContent = string;
   
+    // Create a new element for the trashcan icon
+    var iconElement = document.createElement('img');
+  
+    // Set the src of the icon element to the trashcan.png file
+    iconElement.src = 'trashcan.png';
+  
+    // Add the icon element to the string element
+    stringElement.appendChild(iconElement);
+  
     // Add an event listener for the click event on the string element
     stringElement.addEventListener('click', function() {
       // Get the ID of the current tab
@@ -34,18 +43,18 @@ function createStringElement(string) {
         var currentTabId = tabs[0].id;
   
         // Try to send a message to the content script of the current tab
-        chrome.tabs.sendMessage(currentTabId, { action: 'insertString', string: string }).then(function() {
-          // If the message is received, close the popup
+        var messageSent = chrome.tabs.sendMessage(currentTabId, { action: 'insertString', string: string });
+  
+        // Close the popup after the message is sent
+        messageSent.then(function() {
           window.close();
-        }).catch(function(error) {
-          // If the content script is not active, show an error message
-          alert('Could not insert string. The content script is not active on this page.');
         });
       });
     });
   
     return stringElement;
   }
+  
   
   
   // Define a function to send the selected string to the active tab

@@ -1,10 +1,39 @@
-#saved-strings-container h1 {
+body {
     font-family: sans-serif;
-    font-size: 16px;
-    color: red;
+    padding: 10px;
+  }
+  
+  h1 {
+    margin-bottom: 10px;
+  }
+  
+  #saved-strings-container {
+    height: 200px;
+    overflow: scroll;
+  }
+  
+  #saved-strings-container div {
+    background-color: #eee;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
   }
   
   #saved-strings-container div:hover {
-    background-color: #f0f0f0;
+    background-color: #ddd;
+  }
+  
+  #saved-strings-container div img {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 16px;
+    height: 16px;
+  }
+  
+  #saved-strings-container div:hover img {
+    display: block;
   }
   
