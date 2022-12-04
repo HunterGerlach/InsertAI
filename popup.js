@@ -13,6 +13,21 @@ chrome.storage.sync.get(['savedStrings'], function(result) {
       // Set the text of the element to the saved string
       stringElement.textContent = result.savedStrings[i];
 
+      // Add an event listener for the click event on the string element
+      stringElement.addEventListener('click', function() {
+        // Get the selected string from the text of the element
+        var selectedString = this.textContent;
+
+        // Check if the chrome and chrome.tabs objects are defined
+        if (typeof chrome !== 'undefined' && typeof chrome.tabs !== 'undefined') {
+          // Use the chrome.tabs.query function to find the active tab
+          chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            // Send a message to the content script of the active tab with the selected string
+            chrome.tabs.sendMessage(tabs[0].id, {selectedString: selectedString});
+          });
+        }
+      });
+
       // Add the element to the container
       container.appendChild(stringElement);
     }
@@ -28,24 +43,24 @@ var saveButton = document.getElementById('save-button');
 // Add an event listener for the save button
 saveButton.addEventListener('click', function() {
 
-  // Get the list of saved strings from storage
-  chrome.storage.sync.get(['savedStrings'], function(result) {
-    // Check if the list of saved strings exists
-    if (result.savedStrings) {
-      // Add the new string to the list of saved strings
-      result.savedStrings.push(input.value);
-
-      // Save the updated list of saved strings to storage
-      chrome.storage.sync.set({savedStrings: result.savedStrings});
-    } else {
-      // Create a new list of saved strings with the new string
-      var savedStrings = [input.value];
-
-      // Save the new list of saved strings to storage
-      chrome.storage.sync.set({savedStrings: savedStrings});
-    }
+    // Get the list of saved strings from storage
+    chrome.storage.sync.get(['savedStrings'], function(result) {
+      // Check if the list of saved strings exists
+      if (result.savedStrings) {
+        // Add the new string to the list of saved strings
+        result.savedStrings.push(input.value);
+  
+        // Save the updated list of saved strings to storage
+        chrome.storage.sync.set({savedStrings: result.savedStrings});
+      } else {
+        // Create a new list of saved strings with the new string
+        var savedStrings = [input.value];
+  
+        // Save the new list of saved strings to storage
+        chrome.storage.sync.set({savedStrings: savedStrings});
+      }
+    });
   });
-});
 
 // Define a function to handle the keydown event on the input element
 function handleKeydown(event) {
@@ -57,40 +72,41 @@ function handleKeydown(event) {
         if (result.savedStrings) {
           // Add the new string to the list of saved strings
           result.savedStrings.push(input.value);
-  
+
           // Save the updated list of saved strings to storage
           chrome.storage.sync.set({savedStrings: result.savedStrings});
         } else {
           // Create a new list of saved strings with the new string
           var savedStrings = [input.value];
-  
+
           // Save the new list of saved strings to storage
           chrome.storage.sync.set({savedStrings: savedStrings});
         }
       });
     }
-  }
+}
+
+// Add an event listener for the keydown event on the input element
+input.addEventListener('keydown', handleKeydown);
+
+// Define a function to handle the message event
+function handleMessage(message) {
+    // Check if the message contains a selected string
+    if (message.selectedString) {
+      // Get the active text input element
+      var activeElement = document.activeElement;
   
-  // Add an event listener for the keydown event on the input element
-  input.addEventListener('keydown', handleKeydown);
-
-// Add an event listener for the storage update event
-chrome.storage.onChanged.addListener(function(changes, namespace) {
-  // Check if the saved strings were updated
-  if (changes.savedStrings) {
-    // Clear the container
-    container.innerHTML = '';
-
-    // Loop through the updated list of saved strings
-    for (var i = 0; i < changes.savedStrings.newValue.length; i++) {
-      // Create a new element for the saved string
-      var stringElement = document.createElement('div');
-
-      // Set the text of the element to the saved string
-      stringElement.textContent = changes.savedStrings.newValue[i];
-
-      // Add the element to the container
-      container.appendChild(stringElement);
+      // Check if the active element is a text input or textarea
+      if (activeElement.tagName === 'INPUT' && activeElement.type === 'text' || activeElement.tagName === 'TEXTAREA') {
+        // Insert the selected string at the cursor position
+        activeElement.value = activeElement.value.substring(0, activeElement.selectionStart) + message.selectedString + activeElement.value.substring(activeElement.selectionEnd);
+      }
     }
   }
-});
+
+// Check if the chrome, chrome.runtime, and console objects are defined
+if (typeof chrome !== 'undefined' && typeof chrome.runtime !== 'undefined' && typeof console !== 'undefined') {
+    // Add an event listener for the message event that listens for messages from the popup and calls the handleMessage() function
+    chrome.runtime.onMessage.addListener(handleMessage);
+}
+

@@ -12,6 +12,12 @@
     },
     "icons": {
       "128": "logo.png"
-    }
+    },
+    "content_scripts": [
+      {
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["content_script.js"]
+      }
+    ]
   }
   
