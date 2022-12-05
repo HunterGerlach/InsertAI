@@ -11,6 +11,43 @@ body {
 #logo {
   display: block;
   margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tab {
+  display: inline-block;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 4px 4px 0 0;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #eee;
+  margin-right: 5px;
+}
+
+.tab.active {
+  background-color: #fff;
+  font-weight: bold;
+}
+
+.tab-content-item {
+  padding: 16px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+.tab-content-item.active {
+  display: block;
+}
+
+.tab-content-item:not(.active) {
+  display: none;
 }
 
 h1 {

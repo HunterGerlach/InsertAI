@@ -6,14 +6,32 @@
   </head>
   <body>
     <img src="img/logo.png" alt="Logo" id="logo" />
-    <h1>Saved Strings</h1>
-    <div id="saved-strings-container"></div>
-    <hr />
-    <h1>Add New String</h1>
-    <input id="string-input" type="text" placeholder="Enter a new string" />
-    <button id="save-button">Save</button>
+    <div id="tab-content">
+      <div class="tabs">
+        <button class="tab" data-tab-id="saved-strings">Saved Strings</button>
+        <button class="tab" data-tab-id="code-snippets">Code Snippets</button>
+      </div>
+      <div id="saved-strings" class="tab-content-item active">
+        <h1>Saved Strings</h1>
+        <div id="saved-strings-container"></div>
+        <hr />
+        <h1>Add New String</h1>
+        <input id="string-input" type="text" placeholder="Enter a new string" />
+        <button id="save-button">Save</button>
+      </div>
+      <div id="code-snippets" class="tab-content-item">
+        <h2>Code Snippets</h2>
+        Hello
+        <div id="saved-strings-container"></div>
+        World
+        <h2>Add New Code</h2>
+        <input id="string-input" type="text" placeholder="Enter a new string" />
+        <button id="save-button">Save</button>
+      </div>
+    </div>
     <script src="strings.js"></script>
     <script src="events.js"></script>
     <script src="popup.js"></script>
+    <script src="tabs.js"></script>
   </body>
 </html>
