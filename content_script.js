@@ -31,4 +31,17 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     }
   });
   
+  // Add an event listener for the keydown event on textarea elements on the webpage
+document.addEventListener('keydown', function(event) {
+    // Check if the event target is a textarea element on the webpage
+    if (event.target.tagName === 'TEXTAREA') {
+      // Check if the key pressed is the Enter key
+      if (event.key === 'Enter') {
+        // Extract the text from the element
+        var text = event.target.value;
   
+        // Save the text as a new string
+        saveString(text);
+      }
+    }
+  }, true, 'http://*/*', 'https://*/*');

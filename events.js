@@ -4,6 +4,12 @@ var input = document.getElementById('string-input');
 // Get the save button
 var saveButton = document.getElementById('save-button');
 
+
+if(saveButton) {
+    // Add event listeners
+    addEventListeners();
+}
+
 // Define a function to add event listeners
 function addEventListeners() {
   // Add an event listener for the click event on the save button

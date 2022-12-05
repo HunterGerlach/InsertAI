@@ -1,23 +1,34 @@
+// Get the container element for the saved strings
+var container = document.getElementById('saved-strings-container');
+
 // Define a function to update the list of saved strings
 function updateSavedStrings() {
-    // Clear the container element
-    container.innerHTML = '';
+    // Get the container element
+    var container = document.getElementById('saved-strings-container');
   
-    // Get the list of saved strings from storage
-    chrome.storage.sync.get(['savedStrings'], function(result) {
-      // Check if the list of saved strings exists
-      if (result.savedStrings) {
-        // Loop through the list of saved strings
-        for (var i = 0; i < result.savedStrings.length; i++) {
-          // Create a new element for the saved string
-          var stringElement = createStringElement(result.savedStrings[i]);
+    // Check that the element exists
+    if (container) {
+      // Set the innerHTML property of the element
+      // Clear the container element
+      container.innerHTML = '';
   
-          // Add the element to the container
-          container.appendChild(stringElement);
+      // Get the list of saved strings from storage
+      chrome.storage.sync.get(['savedStrings'], function(result) {
+        // Check if the list of saved strings exists
+        if (result.savedStrings) {
+          // Loop through the list of saved strings
+          for (var i = 0; i < result.savedStrings.length; i++) {
+            // Create a new element for the saved string
+            var stringElement = createStringElement(result.savedStrings[i]);
+  
+            // Add the element to the container
+            container.appendChild(stringElement);
+          }
         }
-      }
-    });
+      });
+    }
   }
+  
   
 // Define a function to create a new element for a saved string
 function createStringElement(string) {

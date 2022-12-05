@@ -29,6 +29,3 @@ function saveString(string) {
 
 // Initialize the list of saved strings
 updateSavedStrings();
-
-// Add event listeners
-addEventListeners();
