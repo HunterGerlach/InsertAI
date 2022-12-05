@@ -78,11 +78,24 @@ body {
     height: 24px;
   }
   
+  .string-row span {
+    display: inline-block;
+    max-width: calc(100% - 40px); /* Subtract the width of the two icons (20px each) */
+    overflow: hidden; /* Hide any text that overflows the available space */
+    text-overflow: ellipsis; /* Add an ellipsis to indicate that the text has been truncated */
+    white-space: nowrap; /* Prevent the text from wrapping to multiple lines */
+}
+
+  
   
   /* Add styles for the string-row:hover class */
   .string-row:hover {
-    background-color: #eee;
-  }
+    background-color: #eee;/* Set the height and line-height of the string row when it is hovered */
+    display: flex;  
+    /* Add styles to keep the row heights consistent */
+    height: 24px;
+    line-height: 24px;
+}
   
   /* Add styles for the string-row:hover .trashcan-icon class */
   .string-row:hover .trashcan-icon {
@@ -96,16 +109,10 @@ body {
   
   .magic-icon,
   .trashcan-icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
     vertical-align: middle;
-  }
-  
-  /* Add styles to put the magic and trashcan icons on the right side of the string row */
-  .string-row {
-    display: flex;
-    align-items: center;
     justify-content: space-between; /* Put the magic and trashcan icons on the right side */
   }
   

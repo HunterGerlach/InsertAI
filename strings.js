@@ -33,34 +33,44 @@ function updateSavedStrings() {
 // Define a function to create a new element for a saved string
 function createStringElement(string) {
     // Create a new element for the saved string
-    var stringElement = document.createElement('div');
-  
-    // Set the text of the element to the saved string
-    stringElement.textContent = string;
-  
-    // Add the "string-row" class to the string element
-    stringElement.classList.add("string-row");
-  
-    // Create a new element for the magic icon
-    var magicIconElement = document.createElement('img');
-  
-    // Set the src of the icon element to the magic.png file
-    magicIconElement.src = 'img/magic.png';
-  
-    // Add the "magic-icon" class to the icon element
-    magicIconElement.classList.add("magic-icon");
-  
-    // Add the magic icon element to the string element
-    stringElement.appendChild(magicIconElement);
-  
-    // Create a new element for the trashcan icon
-    var trashcanIconElement = document.createElement('img');
-  
-    // Set the src of the icon element to the trashcan.png file
-    trashcanIconElement.src = 'img/trashcan.png';
-  
-    // Add the "trashcan-icon" class to the icon element
-    trashcanIconElement.classList.add("trashcan-icon");
+var stringElement = document.createElement('div');
+
+// Add the "string-row" class to the string element
+stringElement.classList.add("string-row");
+
+// Create a new element for the saved string text
+var stringTextElement = document.createElement('span');
+
+// Set the text of the element to the saved string
+stringTextElement.textContent = string;
+
+// Append the span element to the parent div
+stringElement.appendChild(stringTextElement);
+
+// Create a new element for the magic icon
+var magicIconElement = document.createElement('img');
+
+// Set the src of the icon element to the magic.png file
+magicIconElement.src = 'img/magic.png';
+
+// Add the "magic-icon" class to the icon element
+magicIconElement.classList.add("magic-icon");
+
+// Append the magic icon element to the parent div
+stringElement.appendChild(magicIconElement);
+
+// Create a new element for the trashcan icon
+var trashcanIconElement = document.createElement('img');
+
+// Set the src of the icon element to the trashcan.png file
+trashcanIconElement.src = 'img/trashcan.png';
+
+// Add the "trashcan-icon" class to the icon element
+trashcanIconElement.classList.add("trashcan-icon");
+
+// Append the trashcan icon element to the parent div
+stringElement.appendChild(trashcanIconElement);
+
 
     // Add a click event listener to the trashcan icon
     trashcanIconElement.addEventListener('click', function() {
@@ -72,7 +82,8 @@ function createStringElement(string) {
     stringElement.appendChild(trashcanIconElement);
   
     // Add an event listener for the click event on the string element
-stringElement.addEventListener('click', function() {
+    stringElement.addEventListener('click', function() {
+
     // Get the ID of the current tab
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       var currentTabId = tabs[0].id;
@@ -91,7 +102,7 @@ stringElement.addEventListener('click', function() {
     return stringElement;
   }
 
- // Define a function to remove a string from the list of saved strings
+// Define a function to remove a string from the list of saved strings
 function removeString(string) {
     // Get the list of saved strings from storage
     chrome.storage.sync.get(['savedStrings'], function(result) {
@@ -117,5 +128,3 @@ function removeString(string) {
       }
     });
   }
-    
-  
