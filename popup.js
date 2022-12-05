@@ -24,6 +24,8 @@ function saveString(string) {
         updateSavedStrings();
       });
     }
+    // Add the removeString() function here
+    removeString();
   });
 }
 
