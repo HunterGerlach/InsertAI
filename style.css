@@ -1,123 +1,119 @@
 body {
-    font-family: sans-serif;
-    padding: 10px;
-    overflow: auto;
-    height: 100%;
-  
-    /* Add styles to change the width of the window */
-    width: 400px;
-  
-    /* Add styles to change the background color and text color of the popup */
-    background-color: #b0e0e6;
-    color: #333;
-  }
-  
-  #logo {
-    display: block;
-    margin: 0 auto;
-  }
-  
-  
-  h1 {
-    margin-bottom: 10px;
-  }
-  
-  #saved-strings-container {
-    height: 300px;
-    overflow: auto;
-    max-height: 250px; /* Set the maximum height of the container */
-    overflow-y: auto; /* Make the container scrollable vertically */
-  
-    /* Add styles to change the background color and text color of the saved strings section */
-    background-color: #fff;
-    color: #333;
-  }
-  
-  #string-input {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    font-size: 16px;
-    box-sizing: border-box;
-  }
-  
-  #save-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    box-sizing: border-box;
-    cursor: pointer;
-  }
-  
-  .string-row {
-    display: flex;
-    align-items: center;
-  
-    /* Add styles to keep the row heights consistent */
-    height: 24px;
-    line-height: 24px;
-  }
-  
-  .trashcan-icon {
-    margin-left: auto;
-    display: none;
-  
-    /* Add styles to change the size of the trashcan icon */
-    width: 24px;
-    height: 24px;
-  }
-  
-  .magic-icon {
-    margin-left: auto;
-    display: none;
-  
-    /* Add styles to change the size of the trashcan icon */
-    width: 24px;
-    height: 24px;
-  }
-  
-  .string-row span {
-    display: inline-block;
-    max-width: calc(100% - 40px); /* Subtract the width of the two icons (20px each) */
-    overflow: hidden; /* Hide any text that overflows the available space */
-    text-overflow: ellipsis; /* Add an ellipsis to indicate that the text has been truncated */
-    white-space: nowrap; /* Prevent the text from wrapping to multiple lines */
+  font-family: sans-serif;
+  padding: 10px;
+  overflow: auto;
+  height: 100%;
+  width: 400px;
+  background-color: #b0e0e6;
+  color: #333;
 }
 
-  
-  
-  /* Add styles for the string-row:hover class */
-  .string-row:hover {
-    background-color: #eee;/* Set the height and line-height of the string row when it is hovered */
-    display: flex;  
-    /* Add styles to keep the row heights consistent */
-    height: 24px;
-    line-height: 24px;
+#logo {
+  display: block;
+  margin: 0 auto;
 }
-  
-  /* Add styles for the string-row:hover .trashcan-icon class */
-  .string-row:hover .trashcan-icon {
-    display: block;
-  }
-  
-  .string-row:hover .magic-icon {
-    display: block;
-  }
-  
-  
-  .magic-icon,
-  .trashcan-icon {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    vertical-align: middle;
-    justify-content: space-between; /* Put the magic and trashcan icons on the right side */
-  }
-  
-  /* Remove the space between the magic and trashcan icons */
-  .magic-icon + .trashcan-icon {
-    margin-left: 0;
-  }
-  
+
+h1 {
+  margin-bottom: 10px;
+}
+
+#saved-strings-container {
+  height: 300px;
+  overflow: auto;
+  max-height: 250px;
+  overflow-y: auto;
+  background-color: #fff;
+  color: #333;
+}
+
+#string-input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+#save-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.string-row {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  line-height: 24px;
+}
+
+.trashcan-icon {
+  margin-left: auto;
+  display: none;
+  width: 24px;
+  height: 24px;
+}
+
+.magic-icon {
+  margin-left: auto;
+  display: none;
+  width: 24px;
+  height: 24px;
+}
+
+.alert-message {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.string-row span {
+  display: inline-block;
+  max-width: calc(100% - 40px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.string-row:hover {
+  background-color: #eee;
+  display: flex;
+  height: 24px;
+  line-height: 24px;
+}
+
+.string-row:hover .trashcan-icon {
+  display: block;
+}
+
+.string-row:hover .magic-icon {
+  display: block;
+}
+
+.magic-icon,
+.trashcan-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  vertical-align: middle;
+  justify-content: space-between;
+}
+
+.magic-icon + .trashcan-icon {
+  margin-left: 0;
+}
