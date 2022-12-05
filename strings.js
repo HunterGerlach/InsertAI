@@ -29,6 +29,33 @@ function updateSavedStrings() {
   }
 }
 
+// Define a function to edit a saved string
+function editString(string, editedString) {
+  // Get the list of saved strings from storage
+  chrome.storage.sync.get(["savedStrings"], function (result) {
+    // Check if the list of saved strings exists
+    if (result.savedStrings) {
+      // Loop through the list of saved strings
+      for (var i = 0; i < result.savedStrings.length; i++) {
+        // Check if the current string matches the string to be edited
+        if (result.savedStrings[i] === string) {
+          // Update the list of saved strings with the edited string in place of the original string
+          result.savedStrings[i] = editedString;
+
+          // Save the updated list of saved strings to storage
+          chrome.storage.sync.set(
+            { savedStrings: result.savedStrings },
+            function () {
+              // After saving the updated list, refresh the list of saved strings
+              updateSavedStrings();
+            }
+          );
+        }
+      }
+    }
+  });
+}
+
 // Define a function to create a new element for a saved string
 function createStringElement(string) {
   // Create a new element for the saved string
@@ -54,6 +81,21 @@ function createStringElement(string) {
 
   // Add the "magic-icon" class to the icon element
   magicIconElement.classList.add("magic-icon");
+
+  // Add an event listener for the click event on the magic button
+  magicIconElement.addEventListener("click", function () {
+    // Get the text of the string
+    var stringText = string;
+
+    console.log("Text: " + stringText);
+    // Open a dialog box with the string text for editing
+    var editedText = prompt("Edit the string:", stringText);
+
+    console.log("Text: " + stringText);
+    console.log("Edited text: " + editedText);
+    // Update the text of the string with the edited text
+    editString(stringText, editedText);
+  });
 
   // Append the magic icon element to the parent div
   stringElement.appendChild(magicIconElement);
