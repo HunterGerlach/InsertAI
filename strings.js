@@ -114,8 +114,12 @@ function createStringElement(string) {
 
   // Add a click event listener to the trashcan icon
   trashcanIconElement.addEventListener("click", function () {
-    // Remove the corresponding item from the list of saved strings
-    removeString(string);
+    // When the user clicks the button, call the showConfirmDialog() function
+    if (showConfirmDialog()) {
+      // The user clicked "OK", so perform the delete action
+      // Remove the corresponding item from the list of saved strings
+      removeString(string);
+    }
   });
 
   // Add the trashcan icon element to the string element
@@ -156,6 +160,11 @@ function createStringElement(string) {
   });
 
   return stringElement;
+}
+
+// This function displays a confirmation dialog
+function showConfirmDialog() {
+  return confirm("Are you sure you want to delete this item?");
 }
 
 // Define a function to remove a string from the list of saved strings

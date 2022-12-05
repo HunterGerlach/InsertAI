@@ -18,4 +18,4 @@ Once the extension is installed, you can use it as follows:
 2. In the popup window, you can view a list of your saved strings and add new ones by typing them into the input field and clicking the "Save" button.
 3. To insert a saved string into a text input on a webpage, click on the string in the list and it will be automatically inserted at the cursor position.
 
-InsertAI was written entirely by ChatGPT, a powerful language model trained by OpenAI. ChatGPT wrote the code for the extension and created this description to help you understand how the extension works and how it can benefit you. Try InsertAI today and see how it can save you time and effort when filling out forms and entering information on the web.
+InsertAI was written entirely by ChatGPT, a powerful large language model trained by OpenAI. ChatGPT wrote the code for the extension and created this description to help you understand how the extension works and how it can benefit you. Try InsertAI today and see how it can save you time and effort when filling out forms and entering information on the web.

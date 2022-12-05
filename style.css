@@ -19,13 +19,13 @@ body {
 }
 
 .tab {
+  /* Default styles for inactive tab buttons */
   display: inline-block;
   margin: 0;
   cursor: pointer;
   border-radius: 4px 4px 0 0;
   padding: 10px 20px;
   border: 1px solid #ccc;
-  border-radius: 4px;
   background-color: #eee;
   margin-right: 5px;
 }
@@ -33,6 +33,12 @@ body {
 .tab.active {
   background-color: #fff;
   font-weight: bold;
+}
+
+.tab:not(.active) {
+  /* Styles for inactive tab buttons */
+  background-color: #ccc;
+  color: #333;
 }
 
 .tab-content-item {
