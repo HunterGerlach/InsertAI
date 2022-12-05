@@ -30,17 +30,29 @@ function createStringElement(string) {
     // Add the "string-row" class to the string element
     stringElement.classList.add("string-row");
   
+    // Create a new element for the magic icon
+    var magicIconElement = document.createElement('img');
+  
+    // Set the src of the icon element to the magic.png file
+    magicIconElement.src = 'img/magic.png';
+  
+    // Add the "magic-icon" class to the icon element
+    magicIconElement.classList.add("magic-icon");
+  
+    // Add the magic icon element to the string element
+    stringElement.appendChild(magicIconElement);
+  
     // Create a new element for the trashcan icon
-    var iconElement = document.createElement('img');
+    var trashcanIconElement = document.createElement('img');
   
     // Set the src of the icon element to the trashcan.png file
-    iconElement.src = 'img/trashcan.png';
+    trashcanIconElement.src = 'img/trashcan.png';
   
     // Add the "trashcan-icon" class to the icon element
-    iconElement.classList.add("trashcan-icon");
+    trashcanIconElement.classList.add("trashcan-icon");
   
-    // Add the icon element to the string element
-    stringElement.appendChild(iconElement);
+    // Add the trashcan icon element to the string element
+    stringElement.appendChild(trashcanIconElement);
   
     // Add an event listener for the click event on the string element
     stringElement.addEventListener('click', function() {
@@ -60,4 +72,4 @@ function createStringElement(string) {
   
     return stringElement;
   }
-
+  
