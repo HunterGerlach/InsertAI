@@ -13,7 +13,12 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["events.js", "strings.js", "popup.js", "content_script.js"]
+      "js": [
+        "scripts/events.js",
+        "scripts/strings.js",
+        "scripts/popup.js",
+        "scripts/content_script.js"
+      ]
     }
   ]
 }
